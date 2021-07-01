@@ -1,5 +1,5 @@
-import 'package:flutter_bloc/color_bloc.dart';
-import 'package:flutter_bloc/textfield_bloc.dart';
+import 'package:flutter_bloc_app/color_bloc.dart';
+import 'package:flutter_bloc_app/textfield_bloc.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return TextField(
                   onChanged: (String text) => _textFieldBloc.inputTextSink.add(text),
                   decoration: InputDecoration(
-                    errorText: snapshot.hasError ? snapshot.error : null,
+                    errorText: snapshot.hasError ? snapshot.error.toString() : null,
                       fillColor: Colors.grey[100],
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               Container(
                 margin: EdgeInsets.only(top: 20),
-                child: StreamBuilder(
+                child: StreamBuilder<Color>(
                   stream: _bloc.outputStateStream,
                   initialData: Colors.red,
                   builder: (context, snapshot) {
